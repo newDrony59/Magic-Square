@@ -27,3 +27,59 @@ IsMagicSquare(new int[][] {
 
 */
 
+using System;
+
+public class Program 
+{
+	public static bool IsMagicSquare(int[][] arr)
+	{
+		int x,y, hori1 = 0,hori2 = 0,hori3 = 0;
+		int verti1 = 0,verti2 = 0,verti3 = 0;
+		int diago1 = 0, diago2 = 0;
+		bool horisum = true, vertisum = true, diagosum = true;
+		//horizontal check
+			for(x = 0 ; x < arr.Length; x++)
+			{
+				for(y = 0 ; y< arr.Length; y++)
+				{
+					if(x==0)
+					{hori1 += arr[x][y];}
+					else if(x==1)
+					{hori2 += arr[x][y];}
+					else
+					{hori3 += arr[x][y];}
+				}			
+			}
+			if(hori1 != hori2 && hori2 != hori3){horisum =false;}
+			//verticalcheck
+			for(y = 0 ; y < arr.Length; y++)
+			{
+				for(x = 0 ; x < arr.Length; x++)
+				{
+					if(y == 0)
+					{verti1 += arr[x][y];}
+					else if(y == 1)
+					{verti2 += arr[x][y];}
+					else
+					{verti3 += arr[x][y];}
+				}			
+			}
+			if(verti1 != verti2 && verti2 != verti3){vertisum =false;}
+			
+			//diagonal check
+			y=0;
+			for(x = 0 ; x < arr.Length; x++)
+			{
+				diago1 += arr[x][y];
+				y++;
+			}
+			x = 0;
+			for(y = (arr.Length)-1 ; y >=0 ; y--)
+			{
+				diago2 += arr[x][y];
+				x++;
+			}
+			if(diago1 != diago2){diagosum = false;}
+		return (horisum == true && vertisum == true && diagosum == true)?true:false;
+	}
+}
